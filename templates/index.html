@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text to Morse Code</title>
+    <link rel="icon" type="image/png" href="static/img/globe.png">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+
+<body>
+    <div class="banner">
+        <div class="content">
+            <h1>TEXT TO MORSE</h1>
+            <p>Translate your massage to morse code</p>
+        </div>
+    </div>
+    <div class="engine">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="Error_Code">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/" method="post">
+            {% if inp_text: %}
+            <textarea class="morse_input" name="morse_input" cols="40" name="input" placeholder="" rows="3" tabindex="0">{{inp_text}}</textarea>
+            <br>
+            <textarea class="morse_output" name="morse_output" cols="40" disabled name="input" placeholder="" rows="3" tabindex="0">{{out_text}}</textarea>
+            <br>
+            <button class="button" type="submit">Translate</button>
+
+
+            {% else: %}
+            <textarea class="morse_input" name="morse_input" cols="40" name="input" placeholder="Type your message here: normal text or Morse code using '.' or '-', separating letters by spaces and words by ' / '." rows="3" tabindex="0"></textarea>
+            <br>
+            <textarea class="morse_output" name="morse_output" cols="40" disabled name="input" placeholder="Output morse code" rows="3" tabindex="0"></textarea>
+            <br>
+            <button class="button" type="submit">Translate</button>
+            <br>
+
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
